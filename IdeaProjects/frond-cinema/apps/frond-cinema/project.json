@@ -1,0 +1,83 @@
+{
+  "name": "frond-cinema",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {},
+  "sourceRoot": "apps/frond-cinema/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/frond-cinema",
+        "index": "apps/frond-cinema/src/index.html",
+        "main": "apps/frond-cinema/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/frond-cinema/tsconfig.app.json",
+        "assets": [
+          "apps/frond-cinema/src/favicon.ico",
+          "apps/frond-cinema/src/assets"
+        ],
+        "styles": ["apps/frond-cinema/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "frond-cinema:build:production"
+        },
+        "development": {
+          "browserTarget": "frond-cinema:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "frond-cinema:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "polyfills": ["zone.js", "zone.js/testing"],
+        "tsConfig": "apps/frond-cinema/tsconfig.spec.json",
+        "assets": [
+          "apps/frond-cinema/src/favicon.ico",
+          "apps/frond-cinema/src/assets"
+        ],
+        "styles": ["apps/frond-cinema/src/styles.css"],
+        "scripts": []
+      }
+    }
+  }
+}
